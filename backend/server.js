@@ -4,6 +4,7 @@ import dotenv from "dotenv";
 import cors from "cors";
 import connectDB from "./config/database.js";
 import autRoutes from "./routes/auth.js";
+import userRoutes from "./routes/user.js";
 
 //Variables
 const app = express();
@@ -16,6 +17,7 @@ app.use(express.json());
 
 //Routes
 app.use("/api/auth", autRoutes);
+app.use("/api/user", userRoutes);
 
 const startServer = async () => {
   try {

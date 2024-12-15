@@ -30,10 +30,17 @@ export const signUpController = async (req, res, next) => {
       password: hashedPassword,
       avatar,
     });
+
     await newUser.save();
+    const token = jwt.sign(
+      { id: newUser._id, email: newUser.email },
+      process.env.TOKEN_KEY,
+      { expiresIn: "1h" }
+    );
     res.status(201).json({
       message: "Utlisateur crée",
       newUser,
+      token,
     });
   } catch (error) {
     next(error);

@@ -1,24 +1,37 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Login from "./components/auth/Login";
 import Register from "./components/auth/Register";
-import PrivateRoutes from "./utils/privateRoutes";
-import ProfilePicture from "./pages/ProfilePicture";
+import PrivateRoutes from "./utils/PrivateRoutes";
+import PublicRoutes from "./utils/PublicRoutes";
+import UploadProfile from "./pages/UploadProfile";
 import Dashboard from "./pages/Dashboard";
 
 function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/register" element={<Register />} />
-        <Route path="/login" element={<Login />} />
+        {/* Bloque les routes publiques */}
         <Route
-          path="/profile-picture"
+          path="/register"
           element={
-            <PrivateRoutes>
-              <ProfilePicture />
-            </PrivateRoutes>
+            <PublicRoutes>
+              <Register />
+            </PublicRoutes>
           }
         />
+        <Route
+          path="/login"
+          element={
+            <PublicRoutes>
+              <Login />
+            </PublicRoutes>
+          }
+        />
+
+        {/* Route pour la photo de profil */}
+        <Route path="/upload" element={<UploadProfile />} />
+
+        {/* Dashboard ou page principale */}
         <Route
           path="/"
           element={
