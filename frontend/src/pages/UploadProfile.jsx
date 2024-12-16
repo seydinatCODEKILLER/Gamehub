@@ -3,12 +3,18 @@ import { useState } from "react";
 import { useDropzone } from "react-dropzone";
 import { Button } from "@/components/ui/button";
 import useUpload from "@/hooks/useUpload";
+import { useNavigate } from "react-router-dom";
 
 const ProfilePicture = () => {
+  const navigate = useNavigate();
   const [file, setFile] = useState(null);
   const [preview, setPreview] = useState(null);
   const { handleUploadImage, loading, error } = useUpload();
 
+  const handleNavigate = () => {
+    localStorage.setItem("hasProfilePicture", "true");
+    navigate("/");
+  };
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     accept: "image/*",
     multiple: false,
@@ -28,6 +34,12 @@ const ProfilePicture = () => {
 
   return (
     <div className="max-w-md mx-auto mt-10 p-6 bg-white rounded-md shadow-md">
+      <Button
+        onClick={handleNavigate}
+        className="absolute right-0 bottom-0 mr-3 mb-3"
+      >
+        Continuer
+      </Button>
       <h2 className="text-2xl font-semibold mb-4 text-center">
         Mettre à jour votre photo de profil
       </h2>

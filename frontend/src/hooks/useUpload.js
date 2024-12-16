@@ -2,6 +2,7 @@ import { useState } from "react";
 import { uploadImage } from "../services/user";
 import { useNavigate } from "react-router-dom";
 import AuthStore from "@/zustand/store";
+import { toast } from "react-toastify";
 
 const useUpload = () => {
   const [loading, setLoading] = useState(false);
@@ -17,7 +18,8 @@ const useUpload = () => {
       setProfilePicture(profilePictureUrl);
       navigate("/");
     } catch (err) {
-      setError(err.response?.data?.message || "Une erreur s'est produite");
+      setError(err.response.data.message || "Une erreur s'est produite");
+      toast.error(err.response.data.message);
     } finally {
       setLoading(false);
     }

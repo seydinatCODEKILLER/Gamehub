@@ -1,4 +1,4 @@
-import formatValidationErrors from "../utils/validationsErrorHandler.js";
+import formatValidationErrors from "../utils/formatValidationErrors.js";
 
 const errorMiddleware = (err, req, res, next) => {
   const validationError = formatValidationErrors(err);

@@ -20,7 +20,7 @@ const schema = z.object({
 });
 
 const RegisterForm = () => {
-  const { handleRegister, loading, error } = useRegister();
+  const { handleRegister, loading } = useRegister();
 
   const {
     register,
@@ -108,7 +108,6 @@ const RegisterForm = () => {
           >
             {loading ? "Inscription..." : "S'inscrire"}
           </Button>
-          {error && <p className="text-red-500 mt-2">{error}</p>}
           {/* Connecte */}
           <div>
             <p className="text-center font-normal">

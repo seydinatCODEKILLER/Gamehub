@@ -15,7 +15,7 @@ const schema = z.object({
 });
 
 const Login = () => {
-  const { handleLogin, loading, error } = useLogin();
+  const { handleLogin, loading } = useLogin();
 
   const {
     register,
@@ -83,9 +83,8 @@ const Login = () => {
             className="w-full bg-purple-600 text-white py-2 rounded-md mt-4"
             disabled={loading}
           >
-            {loading ? "Inscription..." : "S'inscrire"}
+            {loading ? "Connection..." : "Se connecter"}
           </Button>
-          {error && <p className="text-red-500 mt-2">{error}</p>}
           {/* Connecte */}
           <div>
             <p className="text-center font-normal">
